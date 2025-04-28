@@ -1,0 +1,12 @@
+# Ignore build artifacts
+*.pch
+*.obj
+*.exe
+*.dll
+*.pdb
+*.vs/
+*.vcxproj.user
+*.db-shm
+*.db-wal
+*.ipch
+*.cache
