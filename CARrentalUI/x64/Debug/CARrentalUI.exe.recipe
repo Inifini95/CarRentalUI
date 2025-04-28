@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>D:\VSProjects\CARrentalUI\x64\Debug\CARrentalUI.exe</FullPath>
+      <FullPath>D:\CarRentalUI\x64\Debug\CARrentalUI.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

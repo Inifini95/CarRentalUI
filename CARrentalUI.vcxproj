@@ -184,28 +184,28 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\Car rental System Console app\Car.h" />
-    <ClInclude Include="..\Car rental System Console app\Customer.h" />
-    <ClInclude Include="..\Car rental System Console app\rentalService.h" />
+    <ClInclude Include="Car.h" />
     <ClInclude Include="CARrentalUI.h" />
     <ClInclude Include="CARrentalUIDlg.h" />
+    <ClInclude Include="Customer.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="rentalService.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Car rental System Console app\Car.cpp" />
-    <ClCompile Include="..\Car rental System Console app\Customer.cpp" />
-    <ClCompile Include="..\Car rental System Console app\rentalService.cpp" />
+    <ClCompile Include="Car.cpp" />
     <ClCompile Include="CARrentalUI.cpp" />
     <ClCompile Include="CARrentalUIDlg.cpp" />
+    <ClCompile Include="Customer.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="rentalService.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="CARrentalUI.rc" />

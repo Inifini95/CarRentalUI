@@ -1,6 +1,6 @@
-D:\VSProjects\Car rental System Console app\Car.cpp;D:\VSProjects\CARrentalUI\CARrentalUI\x64\Debug\Car.obj
-D:\VSProjects\Car rental System Console app\Customer.cpp;D:\VSProjects\CARrentalUI\CARrentalUI\x64\Debug\Customer.obj
-D:\VSProjects\Car rental System Console app\rentalService.cpp;D:\VSProjects\CARrentalUI\CARrentalUI\x64\Debug\rentalService.obj
-D:\VSProjects\CARrentalUI\CARrentalUI.cpp;D:\VSProjects\CARrentalUI\CARrentalUI\x64\Debug\CARrentalUI.obj
-D:\VSProjects\CARrentalUI\CARrentalUIDlg.cpp;D:\VSProjects\CARrentalUI\CARrentalUI\x64\Debug\CARrentalUIDlg.obj
-D:\VSProjects\CARrentalUI\pch.cpp;D:\VSProjects\CARrentalUI\CARrentalUI\x64\Debug\pch.obj
+D:\CarRentalUI\Car.cpp;D:\CarRentalUI\CARrentalUI\x64\Debug\Car.obj
+D:\CarRentalUI\CARrentalUI.cpp;D:\CarRentalUI\CARrentalUI\x64\Debug\CARrentalUI.obj
+D:\CarRentalUI\CARrentalUIDlg.cpp;D:\CarRentalUI\CARrentalUI\x64\Debug\CARrentalUIDlg.obj
+D:\CarRentalUI\Customer.cpp;D:\CarRentalUI\CARrentalUI\x64\Debug\Customer.obj
+D:\CarRentalUI\pch.cpp;D:\CarRentalUI\CARrentalUI\x64\Debug\pch.obj
+D:\CarRentalUI\rentalService.cpp;D:\CarRentalUI\CARrentalUI\x64\Debug\rentalService.obj

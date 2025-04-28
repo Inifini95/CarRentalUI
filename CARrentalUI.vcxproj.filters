@@ -33,13 +33,13 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Car rental System Console app\Car.h">
+    <ClInclude Include="Car.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Car rental System Console app\Customer.h">
+    <ClInclude Include="Customer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Car rental System Console app\rentalService.h">
+    <ClInclude Include="rentalService.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -53,13 +53,13 @@
     <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Car rental System Console app\Car.cpp">
+    <ClCompile Include="Car.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Car rental System Console app\Customer.cpp">
+    <ClCompile Include="Customer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Car rental System Console app\rentalService.cpp">
+    <ClCompile Include="rentalService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

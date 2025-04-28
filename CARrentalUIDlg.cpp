@@ -7,6 +7,10 @@
 #include "CARrentalUI.h"
 #include "CARrentalUIDlg.h"
 #include "afxdialogex.h"
+#include "rentalService.h"
+#include "Car.h"
+#include "Customer.h"
+
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -42,6 +46,7 @@ CAboutDlg::CAboutDlg() : CDialogEx(IDD_ABOUTBOX)
 void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	
 }
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
@@ -62,6 +67,12 @@ CCARrentalUIDlg::CCARrentalUIDlg(CWnd* pParent /*=nullptr*/)
 void CCARrentalUIDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_Car_Model, m_CarModelCombo);
+	DDX_Control(pDX, IDC_COMBO_ADD_CAR, m_CarBrandCombo);
+	DDX_Control(pDX, IDC_ADD_CAR_COLOR, m_CarColorEdit);
+	DDX_Control(pDX, IDC_ADD_CAR_YEAR, m_CarYearEdit);
+	DDX_Control(pDX, IDC_ADD_CAR_LICENSE_PLATE, m_CarLicensePlateEdit);
+	DDX_Control(pDX, IDC_ADD_CAR_SUBMIT, m_SubmitButton);
 }
 
 BEGIN_MESSAGE_MAP(CCARrentalUIDlg, CDialogEx)
@@ -74,6 +85,13 @@ BEGIN_MESSAGE_MAP(CCARrentalUIDlg, CDialogEx)
 	ON_EN_CHANGE(IDC_ADD_CAR_COLOR, &CCARrentalUIDlg::OnEnChangeAddCarColor)
 	ON_EN_CHANGE(IDC_ADD_CAR_YEAR, &CCARrentalUIDlg::OnEnChangeAddCarYear)
 	ON_EN_CHANGE(IDC_ADD_CAR_LICENSE_PLATE, &CCARrentalUIDlg::OnEnChangeAddCarLicensePlate)
+	ON_BN_CLICKED(IDC_ADD_CAR_SUBMIT, &CCARrentalUIDlg::OnBnClickedAddCarSubmit)
+	ON_EN_KILLFOCUS(IDC_ADD_CAR_LICENSE_PLATE, &CCARrentalUIDlg::OnEnKillfocusAddCarLicensePlate)
+	ON_EN_SETFOCUS(IDC_ADD_CAR_LICENSE_PLATE, &CCARrentalUIDlg::OnEnSetfocusAddCarLicensePlate)
+	ON_EN_KILLFOCUS(IDC_ADD_CAR_YEAR, &CCARrentalUIDlg::OnEnKillfocusAddCarYear)
+	ON_EN_SETFOCUS(IDC_ADD_CAR_YEAR, &CCARrentalUIDlg::OnEnSetfocusAddCarYear)
+	ON_EN_KILLFOCUS(IDC_ADD_CAR_COLOR, &CCARrentalUIDlg::OnEnKillfocusAddCarColor)
+	ON_EN_SETFOCUS(IDC_ADD_CAR_COLOR, &CCARrentalUIDlg::OnEnSetfocusAddCarColor)
 END_MESSAGE_MAP()
 
 
@@ -189,46 +207,44 @@ void CCARrentalUIDlg::OnBnClickedAddCar()
 
 void CCARrentalUIDlg::OnCbnSelchangeComboAddCar()
 {
-	CComboBox* pCombo = (CComboBox*)GetDlgItem(IDC_COMBO_ADD_CAR);
 	CString selectedCar;
-	int selectedIndex = pCombo->GetCurSel();
+	int selectedIndex = m_CarBrandCombo.GetCurSel();
 	if (selectedIndex != 0) {
 		
 
-		pCombo->GetLBText(selectedIndex, selectedCar);
+		m_CarBrandCombo.GetLBText(selectedIndex, selectedCar);
 	}
-	CComboBox* pCarModelCombo = (CComboBox*)GetDlgItem(IDC_Car_Model);
-	if (pCarModelCombo) {
-		pCarModelCombo->ShowWindow(SW_SHOW);
+	if (m_CarModelCombo) {
+		m_CarModelCombo.ShowWindow(SW_SHOW);
 		if (selectedCar == "Hyundai") {
-			pCarModelCombo->ResetContent();
-			pCarModelCombo->AddString(_T("Select a Model"));
+			m_CarModelCombo.ResetContent();
+			m_CarModelCombo.AddString(_T("Select a Model"));
 
-			pCarModelCombo->AddString(_T("Creta"));
-			pCarModelCombo->AddString(_T("i20"));
-			pCarModelCombo->AddString(_T("Kona"));
-			pCarModelCombo->SetCurSel(0);
+			m_CarModelCombo.AddString(_T("Creta"));
+			m_CarModelCombo.AddString(_T("i20"));
+			m_CarModelCombo.AddString(_T("Kona"));
+			m_CarModelCombo.SetCurSel(0);
 
 
 		}
 		else if (selectedCar == "Tata") {
-			pCarModelCombo->ResetContent();
-			pCarModelCombo->AddString(_T("Select a Model"));
+			m_CarModelCombo.ResetContent();
+			m_CarModelCombo.AddString(_T("Select a Model"));
 
-			pCarModelCombo->AddString(_T("Nexon"));
-			pCarModelCombo->AddString(_T("Harrier"));
-			pCarModelCombo->AddString(_T("Safari"));
-			pCarModelCombo->SetCurSel(0);
+			m_CarModelCombo.AddString(_T("Nexon"));
+			m_CarModelCombo.AddString(_T("Harrier"));
+			m_CarModelCombo.AddString(_T("Safari"));
+			m_CarModelCombo.SetCurSel(0);
 		}
 
 		else if (selectedCar == "Mahindra") {
-			pCarModelCombo->ResetContent();
-			pCarModelCombo->AddString(_T("Select a Model"));
+			m_CarModelCombo.ResetContent();
+			m_CarModelCombo.AddString(_T("Select a Model"));
 
-			pCarModelCombo->AddString(_T("Thar"));
-			pCarModelCombo->AddString(_T("XUV700"));
-			pCarModelCombo->AddString(_T("Scorpio"));
-			pCarModelCombo->SetCurSel(0);
+			m_CarModelCombo.AddString(_T("Thar"));
+			m_CarModelCombo.AddString(_T("XUV700"));
+			m_CarModelCombo.AddString(_T("Scorpio"));
+			m_CarModelCombo.SetCurSel(0);
 
 		}
 		
@@ -241,35 +257,35 @@ void CCARrentalUIDlg::OnCbnSelchangeComboAddCar()
 
 void CCARrentalUIDlg::OnCbnSelchangeCarModel()
 {
-	CComboBox* pCarModelCombo = (CComboBox*)GetDlgItem(IDC_Car_Model);
 	CString carModel;
-	if (pCarModelCombo) {
-		int selectedIndex = pCarModelCombo->GetCurSel();
+	if (m_CarModelCombo) {
+		int selectedIndex = m_CarModelCombo.GetCurSel();
 		if (selectedIndex != 0) {
-			pCarModelCombo->GetLBText(selectedIndex, carModel);
+			m_CarModelCombo.GetLBText(selectedIndex, carModel);
 		}
 		
 	}
-	CEdit* pCarColorEdit = (CEdit*)GetDlgItem(IDC_ADD_CAR_COLOR);
 
-	if (pCarColorEdit) {
-		pCarColorEdit->ShowWindow(SW_SHOW);
+	if (m_CarColorEdit) {
+		m_CarColorEdit.ShowWindow(SW_SHOW);
 		SetDlgItemText(IDC_ADD_CAR_COLOR, _T("Enter The color"));
 
-		//pCarColorEdit->SetWindowText(_T("Enter Car Color"));
+		//m_CarColorEdit.SetWindowText(_T("Enter Car Color"));
 	}
 
-	CEdit* pCaryearEdit = (CEdit*)GetDlgItem(IDC_ADD_CAR_YEAR);
-	if (pCaryearEdit) {
-		pCaryearEdit->ShowWindow(SW_SHOW);
+	if (m_CarYearEdit) {
+		m_CarYearEdit.ShowWindow(SW_SHOW);
 		SetDlgItemText(IDC_ADD_CAR_YEAR, _T("Enter Year Of manufacturing"));
 
 	}
 
-	CEdit* pCarLicensePlateEdit = (CEdit*)GetDlgItem(IDC_ADD_CAR_LICENSE_PLATE);
-	if (pCarLicensePlateEdit) {
-		pCarLicensePlateEdit->ShowWindow(SW_SHOW);
+	if (m_CarLicensePlateEdit) {
+		m_CarLicensePlateEdit.ShowWindow(SW_SHOW);
 		SetDlgItemText(IDC_ADD_CAR_LICENSE_PLATE, _T("Enter License Plate"));
+	}
+
+	if (m_SubmitButton) {
+		m_SubmitButton.ShowWindow(SW_SHOW);
 	}
 	// TODO: Add your control notification handler code here
 }
@@ -311,4 +327,105 @@ void CCARrentalUIDlg::OnEnChangeAddCarLicensePlate()
 	// with the ENM_CHANGE flag ORed into the mask.
 
 	// TODO:  Add your control notification handler code here
+}
+
+#include <string> // Include this header for std::wstring and std::string  
+#include <atlconv.h> // Include this header for ATL conversion macros  
+
+void CCARrentalUIDlg::OnBnClickedAddCarSubmit()  
+{  
+   CString carModel;  
+   int selectedIndex = m_CarModelCombo.GetCurSel();  
+   m_CarModelCombo.GetLBText(selectedIndex, carModel);  
+
+   CString carBrand;  
+   selectedIndex = m_CarBrandCombo.GetCurSel();  
+   m_CarBrandCombo.GetLBText(selectedIndex, carBrand);  
+
+   CString carColor;  
+   m_CarColorEdit.GetWindowText(carColor);  
+
+   CString carYear;  
+   m_CarYearEdit.GetWindowText(carYear);  
+
+   CString carLicensePlate;  
+   m_CarLicensePlateEdit.GetWindowText(carLicensePlate);  
+
+   CTime currentTime = CTime::GetCurrentTime();
+
+   CString strDate;
+   strDate = currentTime.Format(_T("%d-%m-%Y"));
+   // Convert CString (wide string) to std::string (narrow string)  
+   std::string carModelStr = CW2A(carModel.GetString());  
+   std::string carBrandStr = CW2A(carBrand.GetString());  
+   std::string carColorStr = CW2A(carColor.GetString());  
+   std::string carLicensePlateStr = CW2A(carLicensePlate.GetString());  
+   std::string strDateStr = CW2A(carLicensePlate.GetString());
+   rentalService* rentalServiceObj = new rentalService();  
+   rentalServiceObj->addCar(carModelStr, carLicensePlateStr, strDateStr, _ttoi(carYear), carColorStr, carBrandStr);
+	
+  // m_CarLicensePlateEdit.
+}
+
+void CCARrentalUIDlg::OnEnKillfocusAddCarLicensePlate()
+{
+	CString text;
+
+	if (text == "") {
+		m_CarLicensePlateEdit.SetWindowText(_T("Enter License Plate"));
+	}
+	
+	// TODO: Add your control notification handler code here
+}
+
+void CCARrentalUIDlg::OnEnSetfocusAddCarLicensePlate()
+{
+	CString text;
+	m_CarLicensePlateEdit.GetWindowText(text);
+	if (text == "ENTER LICENSE PLATE") {
+		m_CarLicensePlateEdit.SetWindowText(_T(""));
+	}
+	// TODO: Add your control notification handler code here
+}
+
+void CCARrentalUIDlg::OnEnKillfocusAddCarYear()
+{	
+	CString text;
+	m_CarYearEdit.GetWindowText(text);
+	if (text == "") {
+		m_CarYearEdit.SetWindowText(_T("Enter Year Of manufacturing"));
+	}
+	// TODO: Add your control notification handler code here
+}
+
+void CCARrentalUIDlg::OnEnSetfocusAddCarYear()
+{	
+	CString text;
+	m_CarYearEdit.GetWindowText(text);
+	if (text == "Enter Year Of manufacturing") {
+		m_CarYearEdit.SetWindowText(_T(""));
+	}
+	// TODO: Add your control notification handler code here
+}
+
+void CCARrentalUIDlg::OnEnKillfocusAddCarColor()
+{	
+	CString text;
+	m_CarColorEdit.GetWindowText(text);
+	if (text == "") {
+		m_CarColorEdit.SetWindowText(_T("Enter The color"));
+	}
+
+	// TODO: Add your control notification handler code here
+}
+
+void CCARrentalUIDlg::OnEnSetfocusAddCarColor()
+{	
+	CString text;
+	m_CarColorEdit.GetWindowText(text);
+	if (text == "Enter The color") {
+		m_CarColorEdit.SetWindowText(_T(""));
+	}
+
+	// TODO: Add your control notification handler code here
 }
