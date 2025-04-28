@@ -192,6 +192,7 @@ void CCARrentalUIDlg::OnBnClickedAddCar()
 	CComboBox* pCombo = (CComboBox*)GetDlgItem(IDC_COMBO_ADD_CAR);
 	if (pCombo) {
 		pCombo->ShowWindow(SW_SHOW);
+		pCombo->ResetContent();
 		pCombo->AddString(_T("Select a Brand"));
 		pCombo->AddString(_T("Hyundai"));
 		pCombo->AddString(_T("Tata"));
@@ -363,7 +364,25 @@ void CCARrentalUIDlg::OnBnClickedAddCarSubmit()
    std::string strDateStr = CW2A(carLicensePlate.GetString());
    rentalService* rentalServiceObj = new rentalService();  
    rentalServiceObj->addCar(carModelStr, carLicensePlateStr, strDateStr, _ttoi(carYear), carColorStr, carBrandStr);
-	
+
+
+   m_CarColorEdit.SetWindowTextW(_T(""));
+   m_CarYearEdit.SetWindowTextW(_T(""));
+   m_CarLicensePlateEdit.SetWindowTextW(_T(""));
+
+   // Clear combobox selections
+   m_CarBrandCombo.SetCurSel(-1);
+   m_CarModelCombo.SetCurSel(-1);
+
+   // (Optional) Clear items from model combo if you want
+   m_CarModelCombo.ResetContent();
+   m_CarBrandCombo.ShowWindow(SW_HIDE);
+   m_CarModelCombo.ShowWindow(SW_HIDE);
+   m_CarColorEdit.ShowWindow(SW_HIDE);
+   m_CarYearEdit.ShowWindow(SW_HIDE);
+   m_CarLicensePlateEdit.ShowWindow(SW_HIDE);
+   m_SubmitButton.ShowWindow(SW_HIDE);
+
   // m_CarLicensePlateEdit.
 }
 
